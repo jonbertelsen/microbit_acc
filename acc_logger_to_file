@@ -1,0 +1,26 @@
+let ay = 0
+let t = 0
+let file = ""
+input.onButtonPressed(Button.B, function () {
+    files.readToSerial(file)
+    basic.showString(":)")
+})
+input.onButtonPressed(Button.A, function () {
+    basic.pause(3000)
+    files.remove(file)
+    files.appendLine(
+    file,
+    "Time\tAcceleration"
+    )
+    for (let i = 0; i < 100; i++) {
+        t = input.runningTime()
+        ay = input.acceleration(Dimension.Y)
+        files.appendLine(
+        file,
+        "" + t + "\t" + ay
+        )
+        control.waitMicros(20)
+    }
+})
+file = "data.csv"
+input.setAccelerometerRange(AcceleratorRange.EightG)
