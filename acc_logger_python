@@ -4,6 +4,8 @@ radio.on()
 radio.config(group=0)
 radio.config(power=7)
 
+display.show(Image.ASLEEP)
+
 # Eventhandler
 
 while True:
@@ -14,3 +16,5 @@ while True:
             message = radio.receive()
             sleep(100)
             print(message)
+
+    
