@@ -4,12 +4,15 @@ radio.on()
 radio.config(group=0)
 radio.config(power=7)
 
+display.show(Image.HEART)
+
 # Eventhandler
 
 while True:
     message = radio.receive()
     sleep(20)
     if message == "GO":
+        display.show(Image.DUCK)
         while True:
             radio.send(str(accelerometer.get_values()))
             sleep(20)
