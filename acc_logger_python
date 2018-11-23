@@ -1,8 +1,9 @@
 from microbit import *
 import radio
 radio.on()
-radio.config(group=0)
+radio.config(group=8)
 radio.config(power=7)
+sendData = False
 
 display.show(Image.ASLEEP)
 
@@ -12,9 +13,15 @@ while True:
     if button_a.is_pressed():
         radio.send("GO")
         display.show(Image.HAPPY)
-        while True:
-            message = radio.receive()
-            sleep(100)
-            print(message)
-
-    
+        sendData = True
+        print("starting")
+    if button_b.is_pressed():
+        radio.send("STOP")
+        display.show(Image.ANGRY)
+        sendData = False
+        print("stopping")
+        sleep(500)
+    if sendData:
+        message = radio.receive()
+        sleep(100)
+        print(message)
